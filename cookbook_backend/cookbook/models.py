@@ -53,15 +53,15 @@ class Ingredient(Model):
         choices=Unit.choices,
         default=Unit.KG
     )
-    recipe = ForeignKey(Recipe, on_delete=CASCADE)
+    recipe = ForeignKey(Recipe, on_delete=CASCADE, related_name='ingredients')
 
     def __str__(self):
-        return self.product + ' ' + str(self.quantity) + self.unit
+        return str(self.quantity) + self.unit + ' ' + self.product
 
 
 class Instruction(Model):
     text = TextField()
-    recipe = ForeignKey(Recipe, on_delete=CASCADE)
+    recipe = ForeignKey(Recipe, on_delete=CASCADE, related_name='instructions')
 
     def __str__(self):
         return self.text[:128]
