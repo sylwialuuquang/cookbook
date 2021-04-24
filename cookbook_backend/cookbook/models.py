@@ -64,4 +64,4 @@ class Instruction(Model):
     recipe = ForeignKey(Recipe, on_delete=CASCADE, related_name='instructions')
 
     def __str__(self):
-        return self.text[:128]
+        return self.text

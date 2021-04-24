@@ -27,8 +27,7 @@ class RecipeDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['id', 'title', 'description', 'category', 'cuisine', 'ingredients', 'instructions']
-
+        fields = '__all__'
 
 
 
