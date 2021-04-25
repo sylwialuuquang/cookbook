@@ -19,17 +19,19 @@ class RecipeList extends Component {
             this.setState({
                 recipes: response.data
             })
-            console.log(this.state.recipe);
         })
     }
 
     render() { 
         return ( 
-            <div className="list-group">
-                {this.state.recipes.map(recipe => (
-                    <Recipe key={recipe.id} recipe={recipe} />
-                ))}
-            </div>
+            <React.Fragment>
+                <h2>Recipes</h2>
+                <div className="list-group">
+                    {this.state.recipes.map(recipe => (
+                        <Recipe key={recipe.id} recipe={recipe} />
+                    ))}
+                </div>
+            </React.Fragment>
          );
     }
 }

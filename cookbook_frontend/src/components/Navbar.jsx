@@ -22,7 +22,7 @@ class Navbar extends Component {
                       <a className="nav-link active" aria-current="page" href="/recipes/">Recipes</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="#">Ingredients</a>
+                      <a className="nav-link active" aria-current="page" href="/ingredients/">Ingredients</a>
                     </li>
                   </ul>
                   <ul className="nav navbar-nav navbar-right">
