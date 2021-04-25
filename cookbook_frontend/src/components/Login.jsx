@@ -32,12 +32,15 @@ class LoginForm extends Component {
         .then(res => {
             localStorage.setItem('access_token', res.data.access)
             localStorage.setItem('refresh_token', res.data.refresh)
+            window.location.href='/'
             setTimeout(() => {
                 localStorage.removeItem('access_token')
                 localStorage.removeItem('refresh_token')
+                window.location.href='/logout/'
             }, 24 * 3600 * 1000)
         })
     }
+
 
     render() { 
         return ( 
