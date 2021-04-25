@@ -7,7 +7,7 @@ class Layout extends Component {
         return ( 
             <React.Fragment>
                 <Navbar />
-                <div className="container-fluid">
+                <div className="container-fluid mt-3">
                    <div className="site-layout-content">{this.props.children}</div>
                 </div>
             </React.Fragment>
