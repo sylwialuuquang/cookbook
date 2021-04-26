@@ -32,8 +32,10 @@ class AuthService extends Component {
                             refresh: localStorage.getItem("refresh_token")
                         }),
                     }).then(res => res.json()).then(res => {
-                        if (res.status != 200) {
-                            window.location.href = '/'
+                        if (!res.access) {
+                            localStorage.removeItem('access_token')
+                            localStorage.removeItem('refresh_token')
+                            window.location.href = '/logout/'
                             return null
                         } else {
                             localStorage.removeItem('access_token')

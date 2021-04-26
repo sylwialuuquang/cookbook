@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, StringRelatedField
+from rest_framework.serializers import ModelSerializer, StringRelatedField, Serializer
 
 from .models import Recipe, Ingredient, Instruction
 
@@ -28,6 +28,7 @@ class RecipeDetailSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = '__all__'
+
 
 
 

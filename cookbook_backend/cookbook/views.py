@@ -1,4 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 from django.db.models.functions import Lower
@@ -12,18 +14,22 @@ class RecipeListView(ListAPIView):
     serializer_class = RecipeListSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['title', 'description', 'category', 'cuisine', 'cooktime', 'serving']
-    # permission_classes = [IsAuthenticated]
 
 
 class RecipeDetailView(RetrieveAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeDetailSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class IngredientsListView(ListAPIView):
     queryset = Ingredient.objects.values('product').distinct().order_by(Lower('product'))
     serializer_class = IngredientSerializer
-    permission_classes = [IsAuthenticated]
+
+class CategoryListView(APIView):
+    def get(self, request, format=None):
+        return Response([e.value for e in Recipe.Category])
 
 
+class CuisineListView(APIView):
+    def get(self, request, format=None):
+        return Response([e.value for e in Recipe.Cuisine])

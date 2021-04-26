@@ -4,9 +4,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from cookbook.models import Recipe, Ingredient, Instruction
 
-admin.site.register(Recipe)
-admin.site.register(Ingredient)
-admin.site.register(Instruction)
+# admin.site.register(Recipe)
+# admin.site.register(Ingredient)
+# admin.site.register(Instruction)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
