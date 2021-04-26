@@ -11,9 +11,6 @@ class RecipeList extends Component {
         axios({
             method: 'get',
             url: 'http://127.0.0.1:8000/api/recipes/',
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('access_token'),
-            }
         })
         .then(response => {
             this.setState({

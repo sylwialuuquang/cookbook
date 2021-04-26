@@ -7,9 +7,6 @@ class IngredientList extends Component {
         axios({
             method: 'get',
             url: 'http://127.0.0.1:8000/api/ingredients/',
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('access_token'),
-            }
         })
         .then(response => {
             this.setState({
@@ -23,9 +20,9 @@ class IngredientList extends Component {
         return ( 
             <React.Fragment>
                 <h2>Ingredients</h2>
-                <ul class="list-group">
+                <ul className="list-group">
                     {this.state.ingredients.map(ingredient => (
-                        <li class="list-group-item ingredients">{ingredient}</li>
+                        <li className="list-group-item ingredients">{ingredient}</li>
                     ))}
                 </ul>
             </React.Fragment>
