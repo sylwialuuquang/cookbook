@@ -2,11 +2,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from cookbook.models import Recipe, Ingredient, Instruction
+from cookbook.models import Recipe, Ingredient, Instruction, RecipeIngredient
 
-# admin.site.register(Recipe)
-# admin.site.register(Ingredient)
-# admin.site.register(Instruction)
+admin.site.register(Recipe)
+admin.site.register(Ingredient)
+admin.site.register(Instruction)
+admin.site.register(RecipeIngredient)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

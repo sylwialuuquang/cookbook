@@ -24,7 +24,6 @@ class RecipeList extends Component {
         if (cuisine) {
             params['cuisine'] = cuisine
         }
-        console.log(params);
         axios({
             method: 'get',
             url: 'http://127.0.0.1:8000/api/recipes/',

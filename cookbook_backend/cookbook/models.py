@@ -1,4 +1,11 @@
-from django.db.models import Model, CharField, TextField, IntegerField, TextChoices, ForeignKey, CASCADE
+from django.db.models import Model, CharField, TextField, IntegerField, TextChoices, ForeignKey, CASCADE, ManyToManyField
+
+
+class Ingredient(Model):
+    product = CharField(max_length=24)
+
+    def __str__(self):
+        return self.product
 
 
 class Recipe(Model):
@@ -21,6 +28,12 @@ class Recipe(Model):
 
     title = CharField(max_length=128)
     description = CharField(max_length=256)
+    ingredients = ManyToManyField(
+        Ingredient,
+        through='RecipeIngredient',
+        through_fields=('recipe', 'ingredient'),
+        related_name='recipe'
+    )
     category = CharField(
         max_length=9,
         choices=Category.choices,
@@ -38,26 +51,28 @@ class Recipe(Model):
         return self.title
 
 
-class Ingredient(Model):
+class RecipeIngredient(Model):
+    UNIT_CHOICES = (
+        ('kg', 'kg'),
+        ('g', 'g'),
+        ('l', 'l'),
+        ('ml', 'ml'),
+        ('', '')
+    )
 
-    class Unit(TextChoices):
-        KG = 'kg'
-        G = 'g'
-        L = 'l'
-        ML = 'ml'
-
-    product = CharField(max_length=24)
+    recipe = ForeignKey(Recipe, on_delete=CASCADE)
+    ingredient = ForeignKey(Ingredient, on_delete=CASCADE)
     quantity = IntegerField()
     unit = CharField(
         max_length=2,
-        choices=Unit.choices,
-        default=Unit.KG
+        choices=UNIT_CHOICES,
+        default='',
+        blank=True
     )
-    recipe = ForeignKey(Recipe, on_delete=CASCADE, related_name='ingredients')
 
     def __str__(self):
-        return str(self.quantity) + self.unit + ' ' + self.product
-
+        return self.recipe.title + ' - ' + self.ingredient.product
+    
 
 class Instruction(Model):
     text = TextField()

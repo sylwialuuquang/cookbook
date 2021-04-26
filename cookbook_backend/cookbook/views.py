@@ -12,6 +12,7 @@ from .serializers import RecipeListSerializer, RecipeDetailSerializer, Ingredien
 class RecipeListView(ListAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeListSerializer
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['title', 'description', 'category', 'cuisine', 'cooktime', 'serving']
 
@@ -19,17 +20,21 @@ class RecipeListView(ListAPIView):
 class RecipeDetailView(RetrieveAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeDetailSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class IngredientsListView(ListAPIView):
     queryset = Ingredient.objects.values('product').distinct().order_by(Lower('product'))
     serializer_class = IngredientSerializer
+    permission_classes = [IsAuthenticated]
 
 class CategoryListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         return Response([e.value for e in Recipe.Category])
 
 
 class CuisineListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         return Response([e.value for e in Recipe.Cuisine])
