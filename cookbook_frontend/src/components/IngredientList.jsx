@@ -11,18 +11,19 @@ class IngredientList extends Component {
         .then(response => {
             this.setState({
                 ingredients: response.data.map(item => {
-                    return item.product
+                    return item
                 })
             })
         })
     }
     render() { 
+        let i = 0
         return ( 
             <React.Fragment>
                 <h2>Ingredients</h2>
-                <ul className="list-group">
+                <ul className="no-bullets">
                     {this.state.ingredients.map(ingredient => (
-                        <li className="list-group-item ingredients">{ingredient}</li>
+                        <li className="" key={i+=1}>{ingredient}</li>
                     ))}
                 </ul>
             </React.Fragment>
