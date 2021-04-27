@@ -1,12 +1,6 @@
-from rest_framework.serializers import ModelSerializer, StringRelatedField, Serializer
+from rest_framework.serializers import RelatedField, ModelSerializer, StringRelatedField, Serializer
 
 from .models import Recipe, Ingredient, Instruction
-
-
-class IngredientSerializer(ModelSerializer):
-    class Meta:
-        model = Ingredient
-        fields = ['product', ]
 
 
 class InstructionSerializer(ModelSerializer):
@@ -21,15 +15,16 @@ class RecipeListSerializer(ModelSerializer):
         fields = ['id', 'title', 'description', 'category', 'cuisine']
 
 
+class IngredientListingField(RelatedField):
+    def to_representation(self, value):
+        return str(value.quantity) + value.unit + ' ' + value.ingredient.product
+
+
 class RecipeDetailSerializer(ModelSerializer):
-    ingredients = StringRelatedField(many=True)
+    ingredients = IngredientListingField(many=True, read_only=True, source='recipeingredient_set')
     instructions = StringRelatedField(many=True)
 
     class Meta:
         model = Recipe
         fields = '__all__'
-
-
-
-
 

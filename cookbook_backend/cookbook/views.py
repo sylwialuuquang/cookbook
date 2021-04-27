@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models.functions import Lower
 
 from .models import Recipe, Ingredient
-from .serializers import RecipeListSerializer, RecipeDetailSerializer, IngredientSerializer
+from .serializers import RecipeListSerializer, RecipeDetailSerializer
 
 
 class RecipeListView(ListAPIView):
@@ -23,10 +23,10 @@ class RecipeDetailView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class IngredientsListView(ListAPIView):
-    queryset = Ingredient.objects.values('product').distinct().order_by(Lower('product'))
-    serializer_class = IngredientSerializer
+class IngredientsListView(APIView):
     permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        return Response([e.product for e in Ingredient.objects.order_by(Lower('product'))])
 
 class CategoryListView(APIView):
     permission_classes = [IsAuthenticated]
