@@ -19,7 +19,7 @@ class RecipeDetail extends Component {
     }
     render() { 
         return ( 
-            <div>
+            <React.Fragment>
                 { this.state.recipe ?
 
                 <React.Fragment>
@@ -28,10 +28,10 @@ class RecipeDetail extends Component {
                     <small>Cooktime: {this.state.recipe.cooktime} min</small>
                     <br/>
                     <small>Servings: {this.state.recipe.serving}</small>
-                    <h5>Ingredients</h5>
-                    <ul>
+                    <h5 className="mt-3">Ingredients</h5>
+                    <ul className="no-bullets">
                     {this.state.recipe.ingredients.map(ingredient => (
-                        <li>{ingredient}</li>
+                        <li className="mb-1">{ingredient}</li>
                     ))}
                     </ul>
                     <h5>Instructions</h5>
@@ -44,7 +44,7 @@ class RecipeDetail extends Component {
                 :
                 <p>Loading....</p>
                 }
-            </div>
+            </React.Fragment>
          );
     }
 }
