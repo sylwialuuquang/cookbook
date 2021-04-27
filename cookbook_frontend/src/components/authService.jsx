@@ -57,7 +57,7 @@ class AuthService extends Component {
   };
   render() {
       return (
-          <div></div>
+          <React.Fragment></React.Fragment>
       )
   }
   

@@ -23,7 +23,7 @@ class IngredientList extends Component {
                 <h2>Ingredients</h2>
                 <ul className="no-bullets">
                     {this.state.ingredients.map(ingredient => (
-                        <li className="" key={i+=1}>{ingredient}</li>
+                        <li key={i+=1}>{ingredient}</li>
                     ))}
                 </ul>
             </React.Fragment>

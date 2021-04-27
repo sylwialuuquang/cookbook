@@ -26,6 +26,22 @@ ul.no-bullets {
   margin-top: 1rem;
 }
 
+.recipe-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-list-item {
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  margin-bottom: 1rem;
+  color: #212529;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
 @media only screen and (min-width: 1400px) {
   .container-fluid {
     max-width: 1320px;

@@ -50,7 +50,7 @@ class RecipeList extends Component {
             <React.Fragment>
                 <h2>Recipes</h2>
                 <RecipeFilter handleCategoryChange={this.handleCategoryChange} handleCuisineChange={this.handleCuisineChange}/>
-                <div className="list-group">
+                <div className="recipe-list">
                     {this.state.recipes.map(recipe => (
                         <Recipe key={recipe.id} recipe={recipe} />
                     ))}

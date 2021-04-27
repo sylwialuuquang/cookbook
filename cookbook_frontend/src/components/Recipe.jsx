@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Recipe extends Component {
     render() { 
         return ( 
-            <a href={`/recipes/${this.props.recipe.id}`} className="list-group-item list-group-item-action">
+            <a href={`/recipes/${this.props.recipe.id}`} className="recipe-list-item list-group-item-action">
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">{this.props.recipe.title}</h5>
               </div>
