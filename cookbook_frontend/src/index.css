@@ -42,6 +42,9 @@ ul.no-bullets {
   border-radius: .25rem;
 }
 
+#error-msg {
+  color: red;
+}
 @media only screen and (min-width: 1400px) {
   .container-fluid {
     max-width: 1320px;

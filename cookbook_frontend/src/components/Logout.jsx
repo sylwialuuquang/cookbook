@@ -4,9 +4,7 @@ class Logout extends Component {
     
     render() { 
         return ( 
-            <div>
-                You've been logged out
-            </div>
+            <h1 className="display-6">You've been logged out.</h1>
          );
     }
 }

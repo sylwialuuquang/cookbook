@@ -25,14 +25,25 @@ class LoginForm extends Component {
     }
 
     handleSubmit(event) {
-        axios.post('http://127.0.0.1:8000/token/', {
-            username: this.state.username,
-            password: this.state.password
+        fetch('http://127.0.0.1:8000/token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            })
         })
+        .then(res => { if (res.status == 200) return res.json(); else return null})
         .then(res => {
-            localStorage.setItem('access_token', res.data.access)
-            localStorage.setItem('refresh_token', res.data.refresh)
+            localStorage.setItem('access_token', res.access)
+            localStorage.setItem('refresh_token', res.refresh)
             window.location.href='/'
+        })
+        .catch(error => {
+            const err = document.getElementById('error-msg')
+            err.innerHTML = "Login Failed"
         })
         event.preventDefault()
     }
@@ -41,6 +52,7 @@ class LoginForm extends Component {
     render() { 
         return ( 
             <React.Fragment>
+                <p id="error-msg"></p>
                 <form className="loginForm" onSubmit={this.handleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="usernameInput" className="form-label">Username</label>
