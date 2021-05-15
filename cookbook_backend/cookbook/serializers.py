@@ -28,3 +28,8 @@ class RecipeDetailSerializer(ModelSerializer):
         model = Recipe
         fields = '__all__'
 
+class RecipeCreateSerializer(ModelSerializer):
+    class Meta:
+        model = Recipe
+        exclude = ['ingredients', ]
+
